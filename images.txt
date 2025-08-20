@@ -1,6 +1,16 @@
 nginx
 #支持私库
-k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.0.0
-xhofe/alist:latest
+# k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.0.0
+# xhofe/alist:latest
 #支持指定架构
 --platform=linux/arm64 xiaoyaliu/alist
+# Unity Base
+unityci/base:3.1
+# Unity Hub
+unityci/hub:ubuntu-latest
+# Unity Editor
+# ubuntu-2021.3.33f1
+unityci/editor:ubuntu-2021.3.33f1-android-3.1.0
+unityci/editor:ubuntu-2021.3.33f1-ios-3.1.0
+unityci/editor:ubuntu-2021.3.33f1-base-3.1.0
+unityci/editor:ubuntu-2021.3.33f1-webgl-3.1.0
