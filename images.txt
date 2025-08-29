@@ -14,3 +14,28 @@ nginx
 --alias=unityci-editor unityci/editor:ubuntu-2021.3.33f1-ios-3.1.0
 --alias=unityci-editor unityci/editor:ubuntu-2021.3.33f1-base-3.1.0
 --alias=unityci-editor unityci/editor:ubuntu-2021.3.33f1-webgl-3.1.0
+
+# DataBase
+--alias=postgres postgres:17.6-alpine
+
+--alias=mongodb mongodb:8.0.13
+--alias=mongodb mongodb:8.0.12
+--alias=mongodb mongodb:7.0.23
+--alias=mongodb mongodb:7.0.22
+--alias=mongodb mongodb:7.0.21
+
+--alias=mysql mongodb:5.7.44
+
+--alias=redis mongodb:8.2.1
+--alias=redis mongodb:8.2.0
+
+## prometheus
+--alias=prometheus prometheus:3.5.0
+--alias=prometheus prometheus:3.4.2
+
+## elasticsearch
+--alias=elasticsearch elasticsearch:8.19.2
+--alias=elasticsearch elasticsearch:8.18.4
+
+# grafana
+--alias=grafana grafana:12.1.1
