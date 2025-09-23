@@ -18,7 +18,7 @@ nginx
 # DataBase
 --alias=postgres postgres:17.6-alpine
 
---alias=mongodb mongodb:8.0.13
+--alias=mongodb mongodb:8.0.14
 --alias=mongodb mongodb:8.0.12
 --alias=mongodb mongodb:7.0.23
 --alias=mongodb mongodb:7.0.22
@@ -26,8 +26,8 @@ nginx
 
 --alias=mysql mongodb:5.7.44
 
---alias=redis mongodb:8.2.1
---alias=redis mongodb:8.2.0
+--alias=redis redis:8.2.1
+--alias=redis redis:8.2.0
 
 ## prometheus
 --alias=prometheus prometheus:3.5.0
