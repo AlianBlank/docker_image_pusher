@@ -129,7 +129,47 @@ jobs:
 
             # 去除 --alias 参数及其值，但保留其他参数
             image=$(echo "$line" | sed -E 's/--alias[ =][^ ]+//g' | xargs)
-        
+            
+            # 构建目标镜像名称用于检查
+            temp_image=$(echo "$line" | awk '{print $NF}')
+            temp_image_name_tag=$(echo "$temp_image" | awk -F'/' '{print $NF}')
+            temp_name_space=$(echo "$temp_image" | awk -F'/' '{if (NF==3) print $2; else if (NF==2) print $1; else print ""}')
+            temp_image_name=$(echo "$temp_image_name_tag" | awk -F':' '{print $1}')
+            temp_image_tag=$(echo "$temp_image_name_tag" | awk -F':' '{print $2}')
+            if [ -z "$temp_image_tag" ]; then
+              temp_image_tag="latest"
+            fi
+            
+            # 构建完整的目标镜像名称
+            temp_platform=$(echo "$line" | awk -F'--platform[ =]' '{if (NF>1) print $2}' | awk '{print $1}')
+            if [ -z "$temp_platform" ]; then
+                temp_platform_prefix=""
+            else
+                temp_platform_prefix="${temp_platform//\//_}_"
+            fi
+            
+            temp_name_space_prefix=""
+            if [[ -n "${duplicate_images[$temp_image_name]}" ]]; then
+               if [[ -n "${temp_name_space}" ]]; then
+                  temp_name_space_prefix="${temp_name_space}_"
+               fi
+            fi
+            
+            # 检查别名
+            temp_alias=$(echo "$line" | awk -F'--alias[ =]' '{if (NF>1) print $2}' | awk '{print $1}')
+            if [ -n "$temp_alias" ]; then
+              temp_image_name_tag="${temp_alias}:${temp_image_tag}"
+            fi
+            
+            target_image="$ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/$temp_platform_prefix$temp_name_space_prefix$temp_image_name_tag"
+            
+            # 检查远程镜像是否存在
+            echo "检查远程镜像是否存在: $target_image"
+            if docker manifest inspect "$target_image" >/dev/null 2>&1; then
+                echo "镜像 $target_image 已存在，跳过拉取和推送"
+                continue
+            fi
+            
             echo "docker pull $image"
             docker pull $image
             platform=$(echo "$line" | awk -F'--platform[ =]' '{if (NF>1) print $2}' | awk '{print $1}')
