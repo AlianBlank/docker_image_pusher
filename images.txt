@@ -18,11 +18,11 @@ nginx
 # DataBase
 --alias=postgres postgres:17.6-alpine
 
---alias=mongodb mongo:8.0.14
---alias=mongodb mongo:8.0.12
---alias=mongodb mongo:7.0.23
---alias=mongodb mongo:7.0.22
---alias=mongodb mongo:7.0.21
+--alias=mongo mongo:8.0.14
+--alias=mongo mongo:8.0.12
+--alias=mongo mongo:7.0.23
+--alias=mongo mongo:7.0.22
+--alias=mongo mongo:7.0.21
 
 --alias=mysql mysql:5.7.44
 
