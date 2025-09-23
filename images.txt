@@ -30,8 +30,8 @@ nginx
 --alias=redis redis:8.2.0
 
 ## prometheus
---alias=prometheus prometheus:v3.5.0
---alias=prometheus prometheus:v3.4.2
+--alias=prometheus bitnami/prometheus:3.5.0
+--alias=prometheus bitnami/prometheus:v3.4.2
 
 ## elasticsearch
 --alias=elasticsearch elasticsearch:8.19.2
