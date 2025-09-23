@@ -38,4 +38,4 @@ nginx
 --alias=elasticsearch elasticsearch:8.18.4
 
 # grafana
---alias=grafana grafana:12.1.1
+--alias=grafana grafana/grafana:12.1.1
