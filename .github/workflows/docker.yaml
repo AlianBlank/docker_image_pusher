@@ -171,7 +171,10 @@ jobs:
             fi
             
             echo "docker pull $image"
-            docker pull $image
+            if ! docker pull $image; then
+                echo "镜像 $image 拉取失败，跳过该镜像"
+                continue
+            fi
             platform=$(echo "$line" | awk -F'--platform[ =]' '{if (NF>1) print $2}' | awk '{print $1}')
             echo "platform is $platform"
             # 如果存在架构信息 将架构信息拼到镜像名称前面
