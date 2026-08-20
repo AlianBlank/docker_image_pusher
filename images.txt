@@ -39,3 +39,5 @@ nginx
 
 # grafana
 --alias=grafana grafana/grafana:12.1.1
+
+--alias=sonarqube sonarqube/sonarqube:community
